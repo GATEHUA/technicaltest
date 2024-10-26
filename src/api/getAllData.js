@@ -10,11 +10,20 @@ export const processFlags = (flagsData) => {
 };
 
 export const processImages = (countries, images, flagsObj) => {
-  return countries.map((country, index) => ({
-    ...country,
-    image: images[index].hits[0]?.webformatURL || flagsObj[country.emoji],
-    flag: flagsObj[country.emoji],
-  }));
+  return countries.map((country, index) => {
+    const imageData = images[index];
+
+    const imageUrl =
+      imageData?.hits && imageData.hits.length > 0
+        ? imageData.hits[0].webformatURL
+        : flagsObj[country.emoji];
+
+    return {
+      ...country,
+      image: imageUrl,
+      flag: flagsObj[country.emoji],
+    };
+  });
 };
 
 export const fetchAllData = async (client) => {

@@ -6,7 +6,7 @@ import { LightElement } from "./icons/LightElement";
 import { DarkElement } from "./icons/DarkElement";
 import { useSidebarReduction } from "../../hooks/useSidebarReduction";
 
-export const SideBar = ({ toggleTheme, isDarkTheme }) => {
+export const SidebarElement = ({ toggleTheme, isDarkTheme }) => {
   const { sidebarRef, toggleSidebar, togglebtnRef } = useSidebarReduction();
   return (
     <aside ref={sidebarRef} className="sidebar">
