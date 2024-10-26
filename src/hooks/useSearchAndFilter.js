@@ -1,9 +1,21 @@
 import { useRef } from "react";
-import { searchAndFilter } from "../helpers/searchandfilter";
 
 export const useSearchAndFilter = (setAllData, initialData) => {
   const inputRef = useRef("");
   const selectedContinentsRef = useRef([]);
+  const searchAndFilter = (data, search, continents) => {
+    return data.filter((item) => {
+      const matchesSearch = item.name
+        .toString()
+        .toLowerCase()
+        .startsWith(search.toLowerCase());
+
+      const matchesContinent =
+        continents.length === 0 || continents.includes(item.continent.name);
+
+      return matchesSearch && matchesContinent;
+    });
+  };
   const updateFilteredResults = () => {
     const filteredResults = searchAndFilter(
       initialData.current,
